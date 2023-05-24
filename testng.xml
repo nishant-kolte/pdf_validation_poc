@@ -14,7 +14,9 @@
 <!--    			</run>-->
 <!--    		</groups>-->
     		<classes>
-      			<class name="tests.ui.PDFValidationTest"/>
+				<class name="tests.ui.PDFValidationTest"/>
+				<class name="tests.ui.SalesforceLoginTest"/>
     		</classes>
   	</test> <!-- Test -->
 </suite> <!-- UI_Automation_Smoke_Suite-->
+

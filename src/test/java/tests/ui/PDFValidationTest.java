@@ -13,14 +13,15 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 
-
+//
 @Listeners(utilities.ListenerUtils.class)
 public class PDFValidationTest extends BaseTest {
 
-	@AfterTest
+	@AfterClass
 	public void closeBrowser() {
 		driver.close();
 	}
+
 
 	@Test (priority=1, groups="smoke", description = "verify successfully able to validate the pdf data")
 	public void pdf_test() throws InterruptedException, AWTException {
@@ -29,7 +30,6 @@ public class PDFValidationTest extends BaseTest {
 		System.out.println(body.getLocation().x);
 		System.out.println(body.getLocation().y);
 		Thread.sleep(2000);
-
 //		//download pdf from web:
 //		action.moveByOffset(1800,30).click().perform();
 //		Thread.sleep(3000);
