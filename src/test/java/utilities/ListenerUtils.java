@@ -36,7 +36,11 @@ public class ListenerUtils implements ITestListener {
     public void onTestFailure(ITestResult result) {
         if (result.getTestClass().getName().split("\\.")[1].equalsIgnoreCase("ui")){
             BaseTest.log.info("saving screenshot for extent report");
-//                CommonUtils.takescreenshot(result.getName());
+            try {
+                CommonUtils.takescreenshot(result.getName());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             test.log(
                     LogStatus.FAIL,
@@ -44,7 +48,7 @@ public class ListenerUtils implements ITestListener {
                             "<br /> TEST CASE : "+result.getMethod().getDescription() +
                             "<br /> STATUS : <font color=red> FAILED" +
                             "<br /> ERROR : </b>" + result.getThrowable().toString() +
-                            "<br /> FULL STACK TRACE : </b>" + ExceptionUtils.getStackTrace(result.getThrowable()) /*+ test.addScreenCapture(result.getName()+"fail.png")*/
+                            "<br /> FULL STACK TRACE : </b>" + ExceptionUtils.getStackTrace(result.getThrowable()) +test.addScreenCapture(result.getName()+"fail.png")
             );
             report.endTest(test);
 
@@ -53,11 +57,17 @@ public class ListenerUtils implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
+        BaseTest.log.info("saving screenshot for extent report");
+        try {
+            CommonUtils.takeScreenshot(result.getName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         test.log(
                 LogStatus.INFO,
                 "<b> TEST CLASS :" + result.getInstanceName() +
                         "<br /> TEST CASE : "+result.getMethod().getDescription()+
-                        "<br /> STATUS : <font color=green> PASSED"
+                        "<br /> STATUS : <font color=green> PASSED" + test.addScreenCapture(result.getName()+".png")
         );
         report.endTest(test);
 

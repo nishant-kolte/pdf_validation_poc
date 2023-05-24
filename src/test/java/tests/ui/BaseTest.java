@@ -18,6 +18,8 @@ import utilities.InitTestData;
 
 import java.awt.*;
 import java.util.Collections;
+import java.util.Hashtable;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -31,6 +33,7 @@ public class BaseTest {
     public static Robot keyboard;
 
     public static Actions action;
+
 
     @BeforeSuite
     @Parameters({"browser","environment"})
@@ -58,15 +61,22 @@ public class BaseTest {
     public static void initBrowser(String browser) {
         if (browser == null || browser.equalsIgnoreCase("chrome")){
             WebDriverManager.chromedriver().setup();
+            String downloadFilepath = System.getProperty("user.dir")+"\\";
+            Map<String, Object> preferences = new Hashtable<String, Object>();
+            preferences.put("profile.default_content_settings.popups", 0);
+            preferences.put("download.prompt_for_download", false);
+            preferences.put("download.default_directory", downloadFilepath);
+            preferences.put("plugins.always_open_pdf_externally", true);
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--disable-notifications");
-            options.addArguments("--disable-infobars");
             options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+            options.setExperimentalOption("prefs", preferences);
+            options.addArguments("--disable-notifications");
+            options.addArguments("--headless");
             options.addArguments("--window-size=1920x1080");
-//            options.addArguments("--incognito");
-            driver = new ChromeDriver(options);
+            driver= new ChromeDriver(options);
+            driver.manage().deleteAllCookies();
             driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
             log.info("chrome browser started");
         }
         else if (browser.equalsIgnoreCase("ie")){

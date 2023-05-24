@@ -19,7 +19,7 @@ public class PDFValidationTest extends BaseTest {
 
 	@AfterTest
 	public void closeBrowser() {
-//		driver.close();
+		driver.close();
 	}
 
 	@Test (priority=1, groups="smoke", description = "verify successfully able to validate the pdf data")
@@ -30,13 +30,13 @@ public class PDFValidationTest extends BaseTest {
 		System.out.println(body.getLocation().y);
 		Thread.sleep(2000);
 
-		//download pdf from web:
-		action.moveByOffset(1800,30).click().perform();
-		Thread.sleep(3000);
-
-		keyboard.keyPress(KeyEvent.VK_ENTER);
-		keyboard.keyRelease(KeyEvent.VK_ENTER);
-		Thread.sleep(5000);
+//		//download pdf from web:
+//		action.moveByOffset(1800,30).click().perform();
+//		Thread.sleep(3000);
+//
+//		keyboard.keyPress(KeyEvent.VK_ENTER);
+//		keyboard.keyRelease(KeyEvent.VK_ENTER);
+//		Thread.sleep(5000);
 
 		//pdf extraction and printing on console:
 		try {
