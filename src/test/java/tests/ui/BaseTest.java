@@ -3,16 +3,19 @@ package tests.ui;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import utilities.CommonUtils;
 import utilities.InitTestData;
 
 
@@ -31,9 +34,11 @@ public class BaseTest {
     public static Properties config;
     public static Logger log;
     public static Robot keyboard;
-
     public static Actions action;
 
+    private  By email=By.xpath("//input[@name=\"username\"]");
+    private By password=By.xpath("//input[@type=\"password\"]");
+    private By loginButton=By.xpath("//input[@id=\"Login\"]");
 
     @BeforeSuite
     @Parameters({"browser","environment"})
@@ -71,7 +76,7 @@ public class BaseTest {
             options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
             options.setExperimentalOption("prefs", preferences);
             options.addArguments("--disable-notifications");
-            options.addArguments("--headless");
+//            options.addArguments("--headless");
             options.addArguments("--window-size=1920x1080");
             driver= new ChromeDriver(options);
             driver.manage().deleteAllCookies();
@@ -135,6 +140,15 @@ public class BaseTest {
     public static String getProp(String key){
         String ev=getEnvConfig(key);
         return ev!=null?ev:getConfig(key);
+
+    }
+
+    public  void clickOnLoginButton() throws InterruptedException {
+        driver.findElement(email).sendKeys("rajvaibhavi.yadav@neutrinotechlabs.com ");
+        driver.findElement(password).sendKeys("connect@123");
+        driver.findElement(loginButton).click();
+        Thread.sleep(5000);
+        Assert.assertEquals(driver.findElement(By.xpath("//div[@id=\"Jobs\"]")).getText(),"Jobs");
 
     }
 }
