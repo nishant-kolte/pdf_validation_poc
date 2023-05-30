@@ -66,7 +66,7 @@ public class BaseTest {
     public static void initBrowser(String browser) {
         if (browser == null || browser.equalsIgnoreCase("chrome")){
             WebDriverManager.chromedriver().setup();
-            String downloadFilepath = System.getProperty("user.dir")+"\\";
+            String downloadFilepath = System.getProperty("user.dir")+"/";
             Map<String, Object> preferences = new Hashtable<String, Object>();
             preferences.put("profile.default_content_settings.popups", 0);
             preferences.put("download.prompt_for_download", false);

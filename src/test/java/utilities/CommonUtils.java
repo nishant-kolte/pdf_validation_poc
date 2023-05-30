@@ -25,20 +25,20 @@ public class CommonUtils {
 	public static void takescreenshot(String testname) throws IOException
 	{
 		File myfile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileHandler.copy(myfile, new File(System.getProperty("user.dir")+"\\html-report\\"+testname+"fail.png"));
+		FileHandler.copy(myfile, new File(System.getProperty("user.dir")+"/html-report/"+testname+"fail.png"));
 	}
 
 	public static void takeScreenshot(String name) throws IOException
 	{
 		File myfile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileHandler.copy(myfile, new File(System.getProperty("user.dir")+"\\html-report\\"+name+".png"));
+		FileHandler.copy(myfile, new File(System.getProperty("user.dir")+"/html-report/"+name+".png"));
 	}
 
 	public static void cleanHtmlReportFolder() throws Exception {
 //		String command = "cmd /c start cmd.exe /K ";
 //		Runtime rt = Runtime.getRuntime();
 //		Process proc = rt.exec(command);
-			File directory = new File(System.getProperty("user.dir")+"\\html-report");
+			File directory = new File(System.getProperty("user.dir")+"/html-report");
 			FileUtils.cleanDirectory(directory);
 	}
 

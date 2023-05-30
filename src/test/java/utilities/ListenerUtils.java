@@ -21,8 +21,8 @@ public class ListenerUtils implements ITestListener {
         String timestamp = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss").format(new Date());
         try {
             CommonUtils.cleanHtmlReportFolder();
-            report = new ExtentReports(System.getProperty("user.dir")+"\\html-report\\Automation_Execution_Report"+timestamp+".html");
-            report.loadConfig(new File(System.getProperty("user.dir")+"\\src\\test\\resources\\configs\\config.xml"));
+            report = new ExtentReports(System.getProperty("user.dir")+"/html-report/Automation_Execution_Report"+timestamp+".html");
+            report.loadConfig(new File(System.getProperty("user.dir")+"/src/test/resources/configs/config.xml"));
         } catch (Exception e) {
             e.printStackTrace();
         }
