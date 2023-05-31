@@ -33,7 +33,6 @@ public class BaseTest {
     public static Properties testdata;
     public static Properties config;
     public static Logger log;
-    public static Robot keyboard;
     public static Actions action;
 
     private  By email=By.xpath("//input[@name=\"username\"]");
@@ -42,7 +41,7 @@ public class BaseTest {
 
     @BeforeSuite
     @Parameters({"browser","environment"})
-    public void testInit(@Optional String browser,@Optional String env) throws Exception {
+    public void testInit(@Optional String browser,@Optional String env) {
         PropertyConfigurator.configure("log4j.properties");
         log = Logger.getLogger(Test.class);
 
@@ -102,13 +101,13 @@ public class BaseTest {
         }
     }
 
-    public static void openURL(String url) throws AWTException {
+    public static void openURL(String url) {
         initBrowser(browser);
         driver.get(url);
         initObjects();
     }
-    public static void initObjects() throws AWTException {
-        keyboard = new Robot();
+    public static void initObjects() {
+//        keyboard = new Robot();
         action = new Actions(driver);
     }
 

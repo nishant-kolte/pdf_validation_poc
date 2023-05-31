@@ -24,7 +24,7 @@ public class PDFValidationTest extends BaseTest {
 
 
 	@Test (priority=1, groups="smoke", description = "verify successfully able to validate the pdf data")
-	public void pdf_test() throws InterruptedException, AWTException {
+	public void pdf_test() throws InterruptedException {
 		openURL("https://www.africau.edu/images/default/sample.pdf");
 		WebElement body = driver.findElement(By.tagName("body"));
 		System.out.println(body.getLocation().x);
