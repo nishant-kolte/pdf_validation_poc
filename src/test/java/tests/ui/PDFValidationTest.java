@@ -40,7 +40,7 @@ public class PDFValidationTest extends BaseTest {
 
 		//pdf extraction and printing on console:
 		try {
-			String text = PdfUtils.getText(new File(System.getProperty("user.home")+"\\DOwnloads\\sample.pdf"));
+			String text = PdfUtils.getText(new File(System.getProperty("user.home")+"/sample.pdf"));
 			log.debug("Text in PDF: " + text);
 			Assert.assertTrue(text.contains("just for use in the Virtual Mechanics tutorials"),"failed to validate text on page 1");
 			Assert.assertTrue(text.contains("Simple PDF File 2"),"failed to validate text on page 2");
